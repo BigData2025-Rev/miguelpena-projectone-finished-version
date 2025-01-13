@@ -1,4 +1,5 @@
---Run these before running this application
+-- Run these before running this application
+
 CREATE DATABASE rxbuddy_storeDB;
 
 USE rxbuddy_storeDB;
@@ -12,11 +13,11 @@ CREATE TABLE roles (
 INSERT INTO roles (roleID, roleName) VALUES (DEFAULT, 'Admin'),
     (DEFAULT, 'Patient'),
     (DEFAULT, 'Doctor');
-
+##In an actual database, NEVER store passwords, but hashing/encyrption/etc. is out of scope for this project.
 CREATE TABLE accounts (
     accountID INT AUTO_INCREMENT,
     accountUsername VARCHAR(255) NOT NULL,
-    accountPassword VARCHAR(255) NOT NULL, --In an actual database, NEVER store passwords, but hashing/encyrption/etc. is out of scope for this project.
+    accountPassword VARCHAR(255) NOT NULL, 
     firstName VARCHAR(255) NOT NULL,
     lastName VARCHAR(255) NOT NULL,
     balance DECIMAL(6, 2) NOT NULL,
@@ -26,10 +27,10 @@ CREATE TABLE accounts (
 );
 
 INSERT INTO accounts (accountID, accountUsername, accountPassword, firstName, lastName, balance, accountRole) VALUES (DEFAULT, 'admin', 'pass123', 'chad', 'dev', 0.00, 1);
-
+##I can add support for MongoDB querying for getting the description of any of these medications. Focus on MySQL.
 CREATE TABLE medications (
     medicationID INT AUTO_INCREMENT,
-    medicationName VARCHAR(255) UNIQUE NOT NULL, --I can add support for MongoDB querying for getting the description of any of these medications. Focus on MySQL.
+    medicationName VARCHAR(255) UNIQUE NOT NULL, 
     medicationCost DECIMAL(6, 2) NOT NULL,
     PRIMARY KEY (medicationID)
 );

@@ -5,6 +5,7 @@ import mysql.connector
 from mysql.connector import MySQLConnection
 from mysql.connector.cursor import MySQLCursor
 from custom_exceptions.connection_failed import ConnectionFailed
+from config import MYSQL_USER, MYSQL_PASSWORD, MYSQL_HOST, MYSQL_DB
 
 class DataAccessObjectInterface(object):
 
@@ -45,26 +46,17 @@ class DataAccessObjectInterface(object):
         """
         
         try:
-            filename = 'config/mysql_connection_vars.csv'
-            with open(filename, 'r') as mysqlvars_file:
-                csv_reader = csv.reader(mysqlvars_file)
-                for _, row in enumerate(csv_reader):
-                    user_var = row[0]
-                    pass_var = row[1]
-                    host_var = row[2]
-                    database_var = row[3]
-            
             if class_pointer.current_connection == None:
                 logging.info('Attempting to connect...')
-                class_pointer.current_connection = mysql.connector.connect(user=user_var, password=pass_var, host=host_var, database=database_var)
+                class_pointer.current_connection = mysql.connector.connect(user=MYSQL_USER, password=MYSQL_PASSWORD, host=MYSQL_HOST, database=MYSQL_DB)
             
         except IOError as error:
             print(f"(I/O Error): {error.strerror}")
-            print("Please make sure that the .csv file exists.")
+            print("Please make sure that the .env file exists.")
             return
         except mysql.connector.Error as msql_error:
             print(f"(Error connecting to database): {msql_error.msg}")
-            logging.warning('Connection to MySQL failed, please make sure .csv file exists in config folder.')
+            logging.warning('Connection to MySQL failed, please make sure .env file exists in root directory.')
             if class_pointer.current_connection != None:
                 class_pointer.current_connection.close()
                 class_pointer.current_connection = None
