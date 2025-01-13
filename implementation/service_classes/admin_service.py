@@ -49,7 +49,7 @@ class AdminService(InputValidation, AdminServiceInterface):
         for account in self.accounts:
             if account.accountID == self.current_account.accountID:
                 continue
-            result_str += f'{account.accountID}. {account.accountUsername} - Name: {account.firstName} {account.lastName}; Balance: {account.balance}; Role: {account.roleName}\n'
+            result_str += f'{account.accountID}. {account.accountUsername} - Name: {account.firstName} {account.lastName}; Balance: {account.balance:.2f}; Role: {account.roleName}\n'
             valid_IDs.add(account.accountID)
         print(result_str)
         submenu_option = ''
@@ -99,7 +99,7 @@ class AdminService(InputValidation, AdminServiceInterface):
         # valid_IDs = set()
         result_str = ''
         for order in self.shop_orders:
-            result_str += f'{order.orderID}. Username: {order.username} - Name: {order.firstName} {order.lastName} - Medication: {order.medicationName} - Total Amount: ${order.medicationCost}\n'
+            result_str += f'{order.orderID}. Username: {order.username} - Name: {order.firstName} {order.lastName} - Medication: {order.medicationName} - Total Amount: ${order.medicationCost:.2f}\n'
             # valid_IDs.add(account.accountID)
         print(result_str)
         submenu_option = ''
@@ -166,7 +166,7 @@ class AdminService(InputValidation, AdminServiceInterface):
         valid_IDs = set()
         result_str = ''
         for medication in self.medications:
-            result_str += f'{medication.medicationID}. Name: {medication.medicationName} - Cost: ${medication.medicationCost}\n'
+            result_str += f'{medication.medicationID}. Name: {medication.medicationName} - Cost: ${medication.medicationCost:.2f}\n'
             valid_IDs.add(medication.medicationID)
         print(result_str)
         submenu_option = ''

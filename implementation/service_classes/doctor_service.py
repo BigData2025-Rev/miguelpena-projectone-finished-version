@@ -80,7 +80,7 @@ class DoctorService(InputValidation, DoctorServiceInterface):
         # valid_IDs = set()
         result_str = ''
         for medication in self.medications:
-            result_str += f'{medication.medicationID}. Name: {medication.medicationName} - Cost: ${medication.medicationCost}\n'
+            result_str += f'{medication.medicationID}. Name: {medication.medicationName} - Cost: ${medication.medicationCost:.2f}\n'
             # valid_IDs.add(account.accountID)
         print(result_str)
         submenu_option = ''

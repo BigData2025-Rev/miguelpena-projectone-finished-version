@@ -71,7 +71,7 @@ class PatientService(InputValidation, PatientServiceInterface):
         result_str = ''
         valid_orderIDs = set()
         for order in self.orders:
-            result_str += f'Order ID: {order.orderID} - Product: {order.medicationName} - Total: ${order.medicationCost} \n'
+            result_str += f'Order ID: {order.orderID} - Product: {order.medicationName} - Total: ${order.medicationCost:.2f} \n'
             valid_orderIDs.add(order.orderID)
 
         print(result_str)
@@ -141,7 +141,7 @@ class PatientService(InputValidation, PatientServiceInterface):
                 print(err.message)
 
         print('Orders successfully submitted.')
-        print(f'\nYour balanace is now: ${self.current_account.balance}')
+        print(f'\nYour balanace is now: ${self.current_account.balance:.2f}')
         self.current_state = patient_service_state.INITIAL_STATE
         return True
     
