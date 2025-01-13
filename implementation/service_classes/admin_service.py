@@ -84,6 +84,7 @@ class AdminService(InputValidation, AdminServiceInterface):
                         self.accounts = self.account_dao.get_all_accounts()
                     case 'B':
                         self.account_dao.delete_account_by_id(int(user_input))
+                        print('Account deleted successfully.')
                         self.accounts = self.account_dao.get_all_accounts()
                 break
             except AdminMenuSelectionInvalid as err: 
