@@ -141,7 +141,7 @@ class PatientService(InputValidation, PatientServiceInterface):
                 print(err.message)
 
         print('Orders successfully submitted.')
-        print(f'\nYour balanace is now: ${self.current_account.balance:.2f}')
+        print(f'\nYour balance is now: ${self.current_account.balance:.2f}')
         self.current_state = patient_service_state.INITIAL_STATE
         return True
     
