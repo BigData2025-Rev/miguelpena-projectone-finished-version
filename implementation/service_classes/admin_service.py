@@ -12,6 +12,7 @@ from implementation.data_model_classes.account import Account
 from implementation.data_model_classes.medication import Medication
 from implementation.data_model_classes.shop_order import Shop_Order
 
+from extensions import clear
 from enum import Enum
 
 admin_service_state = Enum('ADMIN_STATE', [
@@ -275,6 +276,7 @@ class AdminService(InputValidation, AdminServiceInterface):
         while self.current_state == admin_service_state.INITIAL_STATE:
             try:
                 user_input = input('>>>').upper()
+                clear()
                 if not self.validate_input(user_input, char_input = True, valid_input = 'ABCD'):
                     raise AdminMenuSelectionInvalid("Please choose a valid submenu option.")
                 self.process_input(user_input)

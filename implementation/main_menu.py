@@ -15,6 +15,7 @@ from implementation.service_classes.doctor_service import doctor_service_state
 from implementation.service_classes.patient_service import PatientService
 from implementation.service_classes.patient_service import patient_service_state
 
+from extensions import clear
 from enum import Enum
 
 menu_state = Enum('MENU_STATE', [
@@ -75,6 +76,7 @@ class MainMenu(InputValidation, MenuInterface):
                         raise MenuSelectionInvalidException("Please enter a valid menu option.")
                     if user_input == 'Y':
                         self.current_state = menu_state.CLOSING_STATE
+                        clear()
                     else:
                         self.current_state = menu_state.INITIAL_STATE
                         self.account_service.set_state(account_service_state.INITIAL_STATE)
@@ -114,6 +116,7 @@ class MainMenu(InputValidation, MenuInterface):
                         self.account_service.current_account = None
                         self.account_service.set_state(account_service_state.INITIAL_STATE)
                         self.admin_service = None
+                        clear()
                     else:
                         self.current_state = menu_state.INITIAL_STATE
                         self.admin_service.set_state(admin_service_state.INITIAL_STATE)
@@ -141,6 +144,7 @@ class MainMenu(InputValidation, MenuInterface):
                         self.account_service.current_account = None
                         self.account_service.set_state(account_service_state.INITIAL_STATE)
                         self.patient_service = None
+                        clear()
                     else:
                         self.current_state = menu_state.INITIAL_STATE
                         self.patient_service.set_state(patient_service_state.INITIAL_STATE)
@@ -168,6 +172,7 @@ class MainMenu(InputValidation, MenuInterface):
                         self.account_service.current_account = None
                         self.account_service.set_state(account_service_state.INITIAL_STATE)
                         self.doctor_service = None
+                        clear()
                     else:
                         self.current_state = menu_state.INITIAL_STATE
                         self.doctor_service.set_state(patient_service_state.INITIAL_STATE)

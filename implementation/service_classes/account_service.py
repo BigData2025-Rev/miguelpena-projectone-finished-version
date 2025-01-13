@@ -11,6 +11,7 @@ from implementation.data_model_classes.account import Account
 
 from mysql.connector import Error
 from enum import Enum
+from extensions import clear
 
 import logging
 
@@ -64,6 +65,7 @@ class AccountService(InputValidation, AccountServiceInterface):
             self.current_state = account_service_state.INITIAL_STATE
             return False
         
+        clear()
         self.account_greeting()
         self.current_state = account_service_state.LOADED_USER_STATE
         return True
@@ -150,6 +152,7 @@ class AccountService(InputValidation, AccountServiceInterface):
             self.current_state = account_service_state.INITIAL_STATE
             return False
         
+        clear()
         print('Account successfully created!')
         self.current_state = account_service_state.LOADED_USER_STATE
         return True
@@ -162,6 +165,7 @@ class AccountService(InputValidation, AccountServiceInterface):
         while self.current_state == account_service_state.INITIAL_STATE:
             try: 
                 user_input = input('>>>').upper()
+                clear()
                 if not self.validate_input(user_input, char_input = True, valid_input = 'RLE'):
                     raise AccountMenuSelectionInvalid("Please choose a valid menu option.")
                 self.process_input(user_input)
