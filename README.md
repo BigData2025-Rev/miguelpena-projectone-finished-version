@@ -1,6 +1,5 @@
 ## Project One - Prescription Store:
 
-The current system is messy and errors can occur.
 A store where Patients can login, see their prescriptions, buy refills, and see a history of their purchased prescriptions.
 
 ## Note:
